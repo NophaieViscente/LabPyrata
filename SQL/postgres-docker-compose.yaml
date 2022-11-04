@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres-compose:
+    container_name: postgres_pyrata
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: LabPyrata
+      POSTGRES_DB: exercise_pyrata
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - C:\Users\Nophaie\Documents\study_datascience\LabPyrata\SQL\postgres-data:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+      
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "nophaieviscente@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "LabPyrata"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
