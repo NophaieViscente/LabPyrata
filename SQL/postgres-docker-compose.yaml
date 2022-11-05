@@ -5,9 +5,9 @@ services:
     container_name: postgres_pyrata
     image: postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: LabPyrata
-      POSTGRES_DB: exercise_pyrata
+      POSTGRES_USER: ${USER_EXERCISE}
+      POSTGRES_PASSWORD: ${PWD_EXERCISE}
+      POSTGRES_DB: ${DATABASE_EXERCISE}
     ports:
       - "15432:5432"
     volumes:
@@ -19,8 +19,8 @@ services:
   pgadmin-compose:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "nophaieviscente@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "LabPyrata"
+      PGADMIN_DEFAULT_EMAIL: ${EMAIL_PGADMIN}
+      PGADMIN_DEFAULT_PASSWORD: ${PWD_PGADMIN}
     ports:
       - "16543:80"
     depends_on:
