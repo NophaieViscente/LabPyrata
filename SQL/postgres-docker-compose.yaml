@@ -11,8 +11,8 @@ services:
     ports:
       - "15432:5432"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - C:\Users\Nophaie\Documents\study_datascience\LabPyrata\SQL\postgres-data:/var/lib/postgresql/data
+      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ${POSTGRES_DATA_FOLDER}:/var/lib/postgresql/data
     networks:
       - postgres-compose-network
       
